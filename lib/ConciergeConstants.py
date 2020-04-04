@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional
+from  enum import Enum
 
 KBASE_CONCIERGE_USERNAME = "kbaseconcierge"
 CONCIERGE_CLIENTGROUP = "kbase_concierge"
@@ -23,5 +24,21 @@ class ConciergeParams:
     client_group: Optional[str] = CONCIERGE_CLIENTGROUP
 
 
-@dataclass()
-class
+
+class Status(Enum):
+    """
+    A job begins at created, then can either be estimating
+    """
+
+    created = "created"
+    estimating = "estimating"
+    queued = "queued"
+    running = "running"
+    # finished = "finished"  # Successful termination legacy code
+    completed = "completed"  # Successful termination
+    error = (
+        "error"
+    )  # Something went wrong and job failed # Possible Reasons are (ErrorCodes)
+    terminated = (
+        "terminated"
+    )  # Canceled by user, admin, or script # Possible Reasons are (TerminatedCodes)
