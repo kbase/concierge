@@ -1,14 +1,16 @@
 from dataclasses import dataclass
 from typing import Optional
-from  enum import Enum
+from enum import Enum
 
 KBASE_CONCIERGE_USERNAME = "kbaseconcierge"
 CONCIERGE_CLIENTGROUP = "kbase_concierge"
+ONE_WEEK = 604800
 
 
 @dataclass()
 class ConciergeParams:
     """ Set requested params. If you don't specify CG, its automatically set for you"""
+
     # Request cores. Will allow more cycles more if no other jobs are running
     request_cpus: int
     # Memory and Disk in MB
@@ -22,7 +24,6 @@ class ConciergeParams:
     requirements_list: list = None
     # Default to kbase_concierge
     client_group: Optional[str] = CONCIERGE_CLIENTGROUP
-
 
 
 class Status(Enum):
